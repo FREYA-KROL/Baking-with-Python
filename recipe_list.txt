@@ -1,27 +1,30 @@
 Recipe Book 
 
-Recipe: Lemon Cake  
-d: A sponge cake infused with lemon.
-d: This is a great cake for summertime. 
+n: Lemon Cake  
+d: A sponge cake infused with lemon. This is a great cake for summertime. 
 i: Flour 
 i: Sugar
 i: Butter 
 i: Lemons 
 i: Eggs 
+m: 30 
+t: 180
 
-Recipe: Brownies 
-d: A chocolate flavoured tray-bake
-d: This recipe is very popular with children and adults alike!
+n: Brownies 
+d: A chocolate flavoured tray-bake. This recipe is very popular with children and adults alike!
 i: Chocolate 
 i: Flour
 i: Butter 
 i: Eggs 
 i: Sugar 
+m: 20
+t: 200
 
-Recipe: Banana Bread 
-d: A dense bread flavoured with ripe bananas.
-d: This recipe is easy to bake, and will make use of your old bananas.
+n: Banana Bread 
+d: A dense bread flavoured with ripe bananas. This recipe is easy to bake, and will make use of your old bananas.
 i: Bananas
 i: Flour 
 i: Sugar 
 i: Water 
+m: 60 
+t: 160

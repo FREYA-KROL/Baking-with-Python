@@ -1,0 +1,4 @@
+with open('recipe_list.txt', 'r') as recipe_information:
+    recipe = {}
+    for line in recipe_information:
+        (line[:1], line[3:]) = line.split()

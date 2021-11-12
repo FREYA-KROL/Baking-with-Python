@@ -1,0 +1,64 @@
+recipes = []
+
+with open('recipe_list.txt', 'r') as recipe_information:
+    recipe = {}
+    for line in recipe_information.readlines():
+        line = line.rstrip()
+        if not line: 
+            continue 
+        key = line[:1]
+        value = line[3:]
+        if key == 'n':
+            recipe = next((r for r in recipes if r['title'] == value), None)
+            if not recipe and value:
+                recipe = {'title': value, 'description': '', 'ingredients': [], 'instructions': {'oven_minutes': '', 'oven_temp': ''}}
+                recipes.append(recipe)
+#happy until there. the new dictionary 'recipe' is created. 
+        if key == 'd':
+            recipe['description'] += value
+        if key == 'i':
+            recipe['ingredients'].append(value)
+        if key == 'm':
+            recipe['instructions']['oven_minutes'] += value
+        if key == 't': 
+            recipe['instructions']['oven_temp'] += value 
+
+print(recipes)
+def display_recipes():
+    print('\nRECIPE BOOK')
+    for i, recipe in enumerate(recipes):
+        print(f"\n\t{i+1} - {recipe['title']}")
+
+def choose_recipe(number_of_recipes) -> int:
+    while True:
+        print('\nWhat would you like to bake today?')
+        choice = input('\nPlease input the number of your chosen recipe: ')
+        if not choice:
+            return None 
+        elif choice.isdigit() and 0 < int(choice) <= number_of_recipes:
+            return int(choice)
+
+        print('Please pick a valid number!')
+
+def display_instructions(recipe):
+    print(f"\n{recipe.get('title')}")
+    print(f"\nIngredients: {', '.join(recipe.get('ingredients', []))}")
+    confirmed_ingredients = input('\nDo you have these ingredients? Please put yes/no: ')
+    while True:     
+        if confirmed_ingredients == 'yes':
+            break
+        if confirmed_ingredients == 'no':
+            print()
+            print('Go buy some ingredients then, and then select yes to continue with the recipe.')
+            print()
+            confirmed_ingredients = input('Do you have these ingredients now? Please put yes/no: ')
+    print(f"\nPlease bake your {recipe.get('title')} for {recipe.get('instructions', {}).get('oven_minutes')} minutes at {recipe.get('instructions', {}).get('oven_temp')} degrees.")   
+
+while True: 
+    display_recipes()
+    choice = choose_recipe(len(recipes))
+    if not choice: 
+        break
+    
+    display_instructions(recipes[choice-1])
+    print('\nShall we try another recipe then?')
